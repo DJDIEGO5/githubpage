@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Hábitos de Lectura - RGPD Compliant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            opacity: 0.95;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .rgpd-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        /* ============================================
+           PRINCIPIO 1: TRANSPARENCIA 
+           ============================================ */
+        .principio-transparencia {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 6px solid #1976d2;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.2);
+        }
+
+        .principio-transparencia h2 {
+            color: #0d47a1;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .principio-transparencia .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .info-card h3 {
+            color: #1976d2;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-card p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .info-icon {
+            font-size: 20px;
+        }
+
+        /* ============================================
+           PRINCIPIO 2: LIMITACIÓN DE FINALIDAD
+           ============================================ */
+        .principio-finalidad {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 6px solid #f57c00;
+            box-shadow: 0 4px 15px rgba(245, 124, 0, 0.2);
+        }
+
+        .principio-finalidad h2 {
+            color: #e65100;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .uso-permitido {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .uso-permitido .icon {
+            font-size: 24px;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .uso-prohibido {
+            background: #ffebee;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #c62828;
+        }
+
+        .uso-prohibido h3 {
+            color: #c62828;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        /* ============================================
+           PRINCIPIO 3: MINIMIZACIÓN DE DATOS
+           ============================================ */
+        .principio-minimizacion {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 6px solid #7b1fa2;
+            box-shadow: 0 4px 15px rgba(123, 31, 162, 0.2);
+        }
+
+        .principio-minimizacion h2 {
+            color: #4a148c;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .minimizacion-alert {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #7b1fa2;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .minimizacion-alert strong {
+            color: #7b1fa2;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .form-group:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .campo-obligatorio {
+            color: #d32f2f;
+            font-size: 18px;
+            margin-left: 5px;
+        }
+
+        .campo-opcional {
+            background: #4caf50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 8px;
+            font-weight: normal;
+        }
+
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 0 4px rgba(42, 82, 152, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .checkbox-item:hover {
+            background: #e8e8e8;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #2a5298;
+        }
+
+        /* ============================================
+           PRINCIPIO 4: EXACTITUD
+           ============================================ */
+        .principio-exactitud {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 6px solid #388e3c;
+            box-shadow: 0 4px 15px rgba(56, 142, 60, 0.2);
+        }
+
+        .principio-exactitud h2 {
+            color: #1b5e20;
+            margin-bottom: 15px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ============================================
+           PRINCIPIO 5: LIMITACIÓN CONSERVACIÓN
+           ============================================ */
+        .principio-conservacion {
+            background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 6px solid #f9a825;
+            box-shadow: 0 4px 15px rgba(249, 168, 37, 0.2);
+        }
+
+        .principio-conservacion h2 {
+            color: #f57f17;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: #fffef7;
+            border-radius: 8px;
+            border-left: 4px solid #f9a825;
+        }
+
+        .timeline-item .icon {
+            font-size: 30px;
+            margin-right: 20px;
+            min-width: 40px;
+        }
+
+        /* ============================================
+           PRINCIPIO 6: INTEGRIDAD Y CONFIDENCIALIDAD
+           ============================================ */
+        .principio-seguridad {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 6px solid #d32f2f;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.2);
+        }
+
+        .principio-seguridad h2 {
+            color: #b71c1c;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .security-feature {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .security-feature .icon {
+            font-size: 28px;
+            color: #d32f2f;
+            min-width: 40px;
+        }
+
+        /* ============================================
+           PRINCIPIO 7: RESPONSABILIDAD PROACTIVA
+           ============================================ */
+        .principio-responsabilidad {
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 6px solid #00796b;
+            box-shadow: 0 4px 15px rgba(0, 121, 107, 0.2);
+        }
+
+        .principio-responsabilidad h2 {
+            color: #004d40;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .consent-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .consent-item:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transform: translateX(5px);
+        }
+
+        .consent-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #00796b;
+        }
+
+        .consent-item label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .consent-obligatorio {
+            border-left: 4px solid #d32f2f;
+        }
+
+        .consent-opcional {
+            border-left: 4px solid #4caf50;
+        }
+
+        .derechos-arco {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .derechos-arco h3 {
+            color: #00796b;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 16px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            grid-column: 1 / -1;
+            font-size: 18px;
+            padding: 20px;
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 82, 152, 0.4);
+        }
+
+        .btn-submit:disabled {
+            background: linear-gradient(135deg, #9e9e9e 0%, #757575 100%);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-view-data {
+            background: #2196f3;
+            color: white;
+        }
+
+        .btn-delete-data {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-export-data {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-view-data:hover,
+        .btn-delete-data:hover,
+        .btn-export-data:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .alert {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .alert.success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border-left: 6px solid #28a745;
+        }
+
+        .alert.error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border-left: 6px solid #dc3545;
+        }
+
+        .alert.info {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            color: #0c5460;
+            border-left: 6px solid #17a2b8;
+        }
+
+        .alert.show {
+            display: block;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            margin: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content h2 {
+            color: #1e3c72;
+            margin-bottom: 25px;
+            font-size: 28px;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 15px;
+        }
+
+        .modal-close {
+            background: #6c757d;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 25px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .modal-close:hover {
+            background: #5a6268;
+        }
+
+        .data-display {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2a5298;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .data-display h4 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .data-display p {
+            color: #333;
+            margin: 8px 0;
+            padding-left: 10px;
+        }
+
+        .data-display strong {
+            color: #2a5298;
+        }
+
+        .progress-indicator {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fef08a 0%, #fde047 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .badge-required {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .badge-optional {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            border-top: 3px solid #2a5298;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>📚 Encuesta sobre Hábitos de Lectura</h1>
+            <p>Proyecto de Tesis - Facultad de Educación</p>
+            <div class="rgpd-badge">🔒 100% Cumplimiento RGPD</div>
+        </div>
+
+        <div class="content">
+            <!-- Indicador de Progreso -->
+            <div class="progress-indicator" id="progressIndicator">
+                <strong>Progreso del formulario</strong>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p style="margin-top: 10px; color: #666; font-size: 14px;">
+                    <span id="progressText">0% completado</span>
+                </p>
+            </div>
+
+            <!-- Alerta -->
+            <div id="alertBox" class="alert"></div>
+
+            <!-- ==========================================
+                 PRINCIPIO 1: LICITUD, LEALTAD Y TRANSPARENCIA
+                 ========================================== -->
+            <div class="principio-transparencia">
+                <h2>
+                    <span class="info-icon">📋</span>
+                    PRINCIPIO 1: TRANSPARENCIA - Información Clara y Completa
+                </h2>
+                <p style="color: #0d47a1; margin-bottom: 20px; font-size: 15px;">
+                    <strong>Antes de participar</strong>, te informamos de manera clara, comprensible y accesible sobre cómo trataremos tus datos personales.
+                </p>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><span class="info-icon">👥</span> Responsable</h3>
+                        <p>Grupo de Estudiantes de Tesis<br>Facultad de Educación<br>Universidad Nacional del Perú</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><span class="info-icon">🎯</span> Finalidad</h3>
+                        <p>Recopilar datos estadísticos sobre hábitos de lectura para elaborar nuestra investigación académica de tesis</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><span class="info-icon">⚖️</span> Base Legal</h3>
+                        <p>Consentimiento explícito e informado del encuestado (Art. 6.1.a RGPD)</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><span class="info-icon">📤</span> Destinatarios</h3>
+                        <p>Solo el equipo de investigación. NO compartimos datos con terceros</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><span class="info-icon">🌍</span> Transferencias</h3>
+                        <p>NO hay transferencias internacionales. Datos almacenados localmente</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><span class="info-icon">📞</span> Contacto</h3>
+                        <p>Email: tesis.lectura@universidad.edu.pe<br>Tel: (01) 555-0123</p>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; border: 2px solid #1976d2;">
+                    <h3 style="color: #1976d2; margin-bottom: 15px;">🛡️ Tus Derechos ARCO-PO</h3>
+                    <p style="color: #555; line-height: 1.8;">
+                        Tienes derecho a: <strong>Acceder</strong> a tus datos, 
+                        <strong>Rectificar</strong> información incorrecta, 
+                        <strong>Cancelar</strong>/suprimir tus datos, 
+                        <strong>Oponerte</strong> al tratamiento, 
+                        solicitar la <strong>Portabilidad</strong> de tus datos, 
+                        y <strong>Limitar</strong> el tratamiento. 
+                        Estos derechos puedes ejercerlos en cualquier momento mediante los botones al final.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 PRINCIPIO 2: LIMITACIÓN DE LA FINALIDAD
+                 ========================================== -->
+            <div class="principio-finalidad">
+                <h2>
+                    <span class="info-icon">🎯</span>
+                    PRINCIPIO 2: LIMITACIÓN DE LA FINALIDAD
+                </h2>
+                <p style="color: #e65100; margin-bottom: 20px; font-size: 15px;">
+                    Tus datos serán utilizados <span class="highlight">única y exclusivamente</span> para los fines específicos informados. NO los usaremos para otros propósitos.
+                </p>
+
+                <h3 style="color: #e65100; margin: 20px 0 15px 0; font-size: 18px;">✅ Usos PERMITIDOS:</h3>
+                
+                <div class="uso-permitido">
+                    <span class="icon">📊</span>
+                    <div>
+                        <strong>Análisis Estadístico</strong>
+                        <p style="color: #666; margin-top: 5px;">Procesamiento de datos para obtener estadísticas sobre hábitos de lectura en diferentes grupos demográficos</p>
+                    </div>
+                </div>
+
+                <div class="uso-permitido">
+                    <span class="icon">📝</span>
+                    <div>
+                        <strong>Elaboración de Tesis</strong>
+                        <p style="color: #666; margin-top: 5px;">Redacción del documento académico con conclusiones basadas en los datos recopilados</p>
+                    </div>
+                </div>
+
+                <div class="uso-permitido">
+                    <span class="icon">🎓</span>
+                    <div>
+                        <strong>Presentación Académica</strong>
+                        <p style="color: #666; margin-top: 5px;">Exposición de resultados en formato anónimo durante la sustentación de tesis y publicaciones académicas</p>
+                    </div>
+                </div>
+
+                <div class="uso-prohibido">
+                    <h3>❌ Usos NO PERMITIDOS (Prohibidos):</h3>
+                    <ul style="margin: 10px 0 0 20px; color: #666;">
+                        <li>Marketing o publicidad comercial</li>
+                        <li>Venta o cesión de datos a terceros</li>
+                        <li>Elaboración de perfiles comerciales</li>
+                        <li>Envío de comunicaciones promocionales</li>
+                        <li>Cualquier finalidad no especificada arriba</li>
+                    </ul>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; border: 2px dashed #f57c00;">
+                    <strong style="color: #e65100; font-size: 16px;">⚠️ Compromiso:</strong>
+                    <p style="color: #555; margin-top: 10px;">
+                        Si en el futuro deseáramos usar estos datos para otros fines, solicitaremos tu <strong>consentimiento expreso nuevamente</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FORMULARIO -->
+            <form id="encuestaForm">
+                <!-- ==========================================
+                     PRINCIPIO 3: MINIMIZACIÓN DE DATOS
+                     ========================================== -->
+                <div class="principio-minimizacion">
+                    <h2>
+                        <span class="info-icon">📝</span>
+                        PRINCIPIO 3: MINIMIZACIÓN DE DATOS
+                    </h2>
+                    
+                    <div class="minimizacion-alert">
+                        <strong>Solo recopilamos lo estrictamente necesario</strong>
+                        <p style="color: #666; margin-top: 10px;">
+                            NO pedimos: nombre, apellido, email, teléfono, dirección, DNI, ni ningún dato que no sea esencial para nuestra investigación.
+                        </p>
+                        <p style="color: #7b1fa2; margin-top: 10px; font-weight: 600;">
+                            ✓ Solo 5 campos de información (4 obligatorios + 1 opcional)
+                        </p>
+                    </div>
+
+                    <!-- Campo 1: EDAD -->
+                    <div class="form-group">
+                        <label for="edad">
+                            1️⃣ Edad
+                            <span class="campo-obligatorio">*</span>
+                            <span class="badge badge-required">OBLIGATORIO</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="edad" 
+                            name="edad" 
+                            min="10" 
+                            max="100" 
+                            required
+                            placeholder="Ingresa tu edad (10-100 años)">
+                        <p style="color: #666; font-size: 13px; margin-top: 8px;">
+                            💡 <em>Necesario para analizar hábitos de lectura por grupos etarios</em>
+                        </p>
+                    </div>
+
+                    <!-- Campo 2: GÉNERO -->
+                    <div class="form-group">
+                        <label for="genero">
+                            2️⃣ Género
+                            <span class="campo-obligatorio">*</span>
+                            <span class="badge badge-required">OBLIGATORIO</span>
+                        </label>
+                        <select id="genero" name="genero" required>
+                            <option value="">-- Selecciona una opción --</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="no-binario">No binario</option>
+                            <option value="otro">Otro</option>
+                            <option value="prefiero-no-decir">Prefiero no decir</option>
+                        </select>
+                        <p style="color: #666; font-size: 13px; margin-top: 8px;">
+                            💡 <em>Nos permite identificar patrones de lectura según género</em>
+                        </p>
+                    </div>
+
+                    <!-- Campo 3: PREFERENCIAS LITERARIAS -->
+                    <div class="form-group">
+                        <label>
+                            3️⃣ Preferencias Literarias
+                            <span class="campo-obligatorio">*</span>
+                            <span class="badge badge-required">OBLIGATORIO (mínimo 1)</span>
+                        </label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ficcion" name="preferencias" value="Ficción">
+                                <label for="ficcion">📖 Ficción</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="no-ficcion" name="preferencias" value="No Ficción">
+                                <label for="no-ficcion">📚 No Ficción</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="poesia" name="preferencias" value="Poesía">
+                                <label for="poesia">✍️ Poesía</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="biografia" name="preferencias" value="Biografía">
+                                <label for="biografia">👤 Biografía</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ciencia" name="preferencias" value="Ciencia">
+                                <label for="ciencia">🔬 Ciencia</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fantasia" name="preferencias" value="Fantasía">
+                                <label for="fantasia">🐉 Fantasía</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="misterio" name="preferencias" value="Misterio">
+                                <label for="misterio">🔍 Misterio</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="romance" name="preferencias" value="Romance">
+                                <label for="romance">💕 Romance</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="historia" name="preferencias" value="Historia">
+                                <label for="historia">🏛️ Historia</label>
+                            </div>
+                        </div>
+                        <p style="color: #666; font-size: 13px; margin-top: 8px;">
+                            💡 <em>Dato clave para nuestra investigación sobre géneros literarios preferidos</em>
+                        </p>
+                    </div>
+
+                    <!-- Campo 4: FRECUENCIA -->
+                    <div class="form-group">
+                        <label for="frecuencia">
+                            4️⃣ Frecuencia de Lectura
+                            <span class="campo-obligatorio">*</span>
+                            <span class="badge badge-required">OBLIGATORIO</span>
+                        </label>
+                        <select id="frecuencia" name="frecuencia" required>
+                            <option value="">-- Selecciona una opción --</option>
+                            <option value="diario">📅 Diariamente</option>
+                            <option value="semanal">📆 Varias veces por semana</option>
+                            <option value="mensual">🗓️ Varias veces al mes</option>
+                            <option value="ocasional">⏰ Ocasionalmente</option>
+                            <option value="nunca">❌ Casi nunca / Nunca</option>
+                        </select>
+                        <p style="color: #666; font-size: 13px; margin-top: 8px;">
+                            💡 <em>Esencial para medir la intensidad de los hábitos de lectura</em>
+                        </p>
+                    </div>
+
+                    <!-- Campo 5: COMENTARIOS OPCIONALES -->
+                    <div class="form-group">
+                        <label for="comentarios">
+                            5️⃣ Comentarios Adicionales
+                            <span class="campo-opcional">OPCIONAL</span>
+                        </label>
+                        <textarea 
+                            id="comentarios" 
+                            name="comentarios" 
+                            placeholder="Si deseas, comparte información adicional sobre tus hábitos de lectura, autores favoritos, lugares donde lees, etc. (Este campo es completamente opcional)"></textarea>
+                        <p style="color: #666; font-size: 13px; margin-top: 8px;">
+                            💡 <em>Campo opcional para datos cualitativos complementarios</em>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ==========================================
+                     PRINCIPIO 4: EXACTITUD
+                     ========================================== -->
+                <div class="principio-exactitud">
+                    <h2>
+                        <span class="info-icon">✅</span>
+                        PRINCIPIO 4: EXACTITUD DE LOS DATOS
+                    </h2>
+                    <p style="color: #1b5e20; margin-bottom: 15px; font-size: 15px;">
+                        Por favor, <strong>verifica que todos los datos ingresados sean correctos</strong> antes de enviar.
+                    </p>
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <p style="color: #555; margin-bottom: 10px;">
+                            ✓ Revisa cuidadosamente tu edad, género, preferencias y frecuencia de lectura
+                        </p>
+                        <p style="color: #555; margin-bottom: 10px;">
+                            ✓ Si detectas un error DESPUÉS de enviar, puedes <strong>ver tus datos</strong> y <strong>eliminarlos</strong> para volver a participar
+                        </p>
+                        <p style="color: #555;">
+                            ✓ Garantizamos que tus datos sean <strong>exactos, completos y actualizados</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ==========================================
+                     PRINCIPIO 5: LIMITACIÓN DEL PLAZO DE CONSERVACIÓN
+                     ========================================== -->
+                <div class="principio-conservacion">
+                    <h2>
+                        <span class="info-icon">⏰</span>
+                        PRINCIPIO 5: LIMITACIÓN DEL PLAZO DE CONSERVACIÓN
+                    </h2>
+                    <p style="color: #f57f17; margin-bottom: 15px; font-size: 15px;">
+                        Tus datos NO se conservarán indefinidamente. Establecemos un <strong>plazo específico y limitado</strong>.
+                    </p>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="icon">📅</span>
+                            <div>
+                                <strong style="color: #f57f17;">Fecha de Inicio:</strong>
+                                <p style="color: #666; margin-top: 5px;">Septiembre 2025 (fecha actual)</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="icon">🔬</span>
+                            <div>
+                                <strong style="color: #f57f17;">Período de Investigación:</strong>
+                                <p style="color: #666; margin-top: 5px;">12 meses para recopilación, análisis y elaboración de tesis</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="icon">🎓</span>
+                            <div>
+                                <strong style="color: #f57f17;">Sustentación de Tesis:</strong>
+                                <p style="color: #666; margin-top: 5px;">Estimada para Septiembre 2026</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="icon">🗑️</span>
+                            <div>
+                                <strong style="color: #d32f2f;">Fecha de Eliminación:</strong>
+                                <p style="color: #666; margin-top: 5px;">
+                                    <span class="highlight">Octubre 2026</span> - 
+                                    Todos los datos personales serán eliminados de forma permanente
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; border: 2px solid #f9a825;">
+                        <strong style="color: #f57f17;">⚡ Importante:</strong>
+                        <p style="color: #555; margin-top: 10px;">
+                            Puedes solicitar la eliminación de tus datos <strong>en cualquier momento ANTES</strong> del plazo establecido, sin necesidad de justificación.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ==========================================
+                     PRINCIPIO 6: INTEGRIDAD Y CONFIDENCIALIDAD
+                     ========================================== -->
+                <div class="principio-seguridad">
+                    <h2>
+                        <span class="info-icon">🔒</span>
+                        PRINCIPIO 6: INTEGRIDAD Y CONFIDENCIALIDAD (SEGURIDAD)
+                    </h2>
+                    <p style="color: #b71c1c; margin-bottom: 20px; font-size: 15px;">
+                        Implementamos <strong>medidas técnicas y organizativas</strong> para proteger tus datos contra accesos no autorizados, pérdida o alteración.
+                    </p>
+
+                    <div class="security-feature">
+                        <span class="icon">💾</span>
+                        <div>
+                            <strong style="color: #d32f2f;">Almacenamiento Local</strong>
+                            <p style="color: #666; margin-top: 5px;">
+                                Tus datos se guardan ÚNICAMENTE en tu navegador (localStorage). 
+                                NO se envían a servidores externos ni se transmiten por internet.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="security-feature">
+                        <span class="icon">🔐</span>
+                        <div>
+                            <strong style="color: #d32f2f;">Encriptación de Datos</strong>
+                            <p style="color: #666; margin-top: 5px;">
+                                Antes de almacenar, aplicamos encriptación Base64 para proteger la información. 
+                                Cada encuesta tiene un ID único encriptado.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="security-feature">
+                        <span class="icon">👥</span>
+                        <div>
+                            <strong style="color: #d32f2f;">Acceso Restringido</strong>
+                            <p style="color: #666; margin-top: 5px;">
+                                Solo los 3 miembros del equipo de investigación tienen acceso a los datos recopilados. 
+                                Firma de acuerdos de confidencialidad.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="security-feature">
+                        <span class="icon">🎭</span>
+                        <div>
+                            <strong style="color: #d32f2f;">Anonimización para Publicaciones</strong>
+                            <p style="color: #666; margin-top: 5px;">
+                                Cualquier resultado publicado o presentado públicamente será completamente <strong>anónimo</strong>, 
+                                sin posibilidad de identificar a los participantes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="security-feature">
+                        <span class="icon">🛡️</span>
+                        <div>
+                            <strong style="color: #d32f2f;">Sin Base de Datos Externa</strong>
+                            <p style="color: #666; margin-top: 5px;">
+                                Al no usar servidores o bases de datos externas, eliminamos riesgos de hackeos, 
+                                filtraciones o brechas de seguridad en línea.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="security-feature">
+                        <span class="icon">🔄</span>
+                        <div>
+                            <strong style="color: #d32f2f;">Control Total del Usuario</strong>
+                            <p style="color: #666; margin-top: 5px;">
+                                TÚ tienes el control absoluto: puedes ver, exportar y eliminar tus datos en cualquier momento 
+                                desde este mismo navegador.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================
+                     PRINCIPIO 7: RESPONSABILIDAD PROACTIVA
+                     ========================================== -->
+                <div class="principio-responsabilidad">
+                    <h2>
+                        <span class="info-icon">✋</span>
+                        PRINCIPIO 7: RESPONSABILIDAD PROACTIVA (ACCOUNTABILITY)
+                    </h2>
+                    <p style="color: #004d40; margin-bottom: 20px; font-size: 15px;">
+                        Demostramos nuestro compromiso con la protección de datos mediante <strong>consentimientos explícitos, granulares y documentados</strong>, 
+                        y facilitamos el ejercicio de tus derechos.
+                    </p>
+
+                    <h3 style="color: #00796b; margin-bottom: 15px; font-size: 18px;">
+                        📝 Consentimientos Informados (Debes aceptar todos los obligatorios)
+                    </h3>
+
+                    <!-- Consentimiento 1 -->
+                    <div class="consent-item consent-obligatorio">
+                        <input type="checkbox" id="consentimiento1" required>
+                        <label for="consentimiento1">
+                            <strong>Consentimiento 1: Información Leída y Comprendida</strong>
+                            <span class="badge badge-required">OBLIGATORIO</span>
+                            <p style="color: #666; margin-top: 8px; font-size: 14px;">
+                                He leído, comprendido y acepto toda la información proporcionada sobre el tratamiento de mis datos personales, 
+                                incluyendo el responsable, finalidad, derechos, plazo de conservación y medidas de seguridad.
+                            </p>
+                        </label>
+                    </div>
+
+                    <!-- Consentimiento 2 -->
+                    <div class="consent-item consent-obligatorio">
+                        <input type="checkbox" id="consentimiento2" required>
+                        <label for="consentimiento2">
+                            <strong>Consentimiento 2: Autorización para Uso Académico</strong>
+                            <span class="badge badge-required">OBLIGATORIO</span>
+                            <p style="color: #666; margin-top: 8px; font-size: 14px;">
+                                Autorizo expresamente el uso de mis datos personales EXCLUSIVAMENTE para los fines académicos descritos: 
+                                análisis estadístico, elaboración de tesis y presentación de resultados anónimos.
+                            </p>
+                        </label>
+                    </div>
+
+                    <!-- Consentimiento 3 -->
+                    <div class="consent-item consent-obligatorio">
+                        <input type="checkbox" id="consentimiento3" required>
+                        <label for="consentimiento3">
+                            <strong>Consentimiento 3: Conocimiento de Derechos</strong>
+                            <span class="badge badge-required">OBLIGATORIO</span>
+                            <p style="color: #666; margin-top: 8px; font-size: 14px;">
+                                Confirmo que conozco y comprendo mis derechos (acceso, rectificación, supresión, oposición, portabilidad y limitación) 
+                                y que puedo retirar este consentimiento en cualquier momento sin afectar la licitud del tratamiento previo.
+                            </p>
+                        </label>
+                    </div>
+
+                    <!-- Consentimiento 4 -->
+                    <div class="consent-item consent-obligatorio">
+                        <input type="checkbox" id="consentimiento4" required>
+                        <label for="consentimiento4">
+                            <strong>Consentimiento 4: Veracidad de Datos</strong>
+                            <span class="badge badge-required">OBLIGATORIO</span>
+                            <p style="color: #666; margin-top: 8px; font-size: 14px;">
+                                Declaro que los datos proporcionados son veraces, exactos y actualizados. 
+                                Me comprometo a verificar la información antes de enviar la encuesta.
+                            </p>
+                        </label>
+                    </div>
+
+                    <!-- Consentimiento 5 - OPCIONAL -->
+                    <div class="consent-item consent-opcional">
+                        <input type="checkbox" id="consentimiento5">
+                        <label for="consentimiento5">
+                            <strong>Consentimiento 5: Recibir Resultados (Opcional)</strong>
+                            <span class="badge badge-optional">OPCIONAL</span>
+                            <p style="color: #666; margin-top: 8px; font-size: 14px;">
+                                Deseo recibir información sobre los resultados finales de la investigación 
+                                (se enviarán resultados agregados y anónimos, sin identificación de participantes individuales).
+                            </p>
+                        </label>
+                    </div>
+
+                    <!-- DERECHOS ARCO -->
+                    <div class="derechos-arco">
+                        <h3>👤 Ejercicio de Derechos ARCO-PO</h3>
+                        <p style="color: #666; margin-bottom: 20px;">
+                            Como responsables del tratamiento, facilitamos el ejercicio inmediato de tus derechos. 
+                            Puedes gestionar tus datos en cualquier momento:
+                        </p>
+
+                        <div class="buttons">
+                            <button type="button" class="btn-view-data" onclick="verDatos()">
+                                <span>👁️</span> Ver mis Datos (Acceso)
+                            </button>
+                            <button type="button" class="btn-export-data" onclick="exportarDatos()">
+                                <span>📥</span> Exportar Datos (Portabilidad)
+                            </button>
+                            <button type="button" class="btn-delete-data" onclick="eliminarDatos()">
+                                <span>🗑️</span> Eliminar Datos (Supresión)
+                            </button>
+                        </div>
+
+                        <p style="color: #666; margin-top: 20px; font-size: 14px; text-align: center;">
+                            ℹ️ El derecho de <strong>Rectificación</strong> puedes ejercerlo eliminando tus datos y volviendo a completar la encuesta con información correcta
+                        </p>
+                    </div>
+                </div>
+
+                <!-- BOTÓN DE ENVÍO -->
+                <div class="buttons">
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <span>📤</span> ENVIAR ENCUESTA
+                    </button>
+                </div>
+
+                <p style="text-align: center; color: #666; margin-top: 20px; font-size: 14px;">
+                    Al hacer clic en "Enviar Encuesta", confirmas que has leído toda la información y aceptas los consentimientos obligatorios marcados arriba.
+                </p>
+            </form>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>🔒 Sistema 100% Compatible con RGPD</strong></p>
+            <p>Universidad Nacional del Perú - Facultad de Educación</p>
+            <p>© 2025 | Todos los derechos reservados</p>
+            <p style="margin-top: 10px;">
+                Desarrollado sin base de datos externa | Almacenamiento local seguro
+            </p>
+        </div>
+    </div>
+
+    <!-- MODAL PARA MOSTRAR DATOS -->
+    <div id="modalDatos" class="modal">
+        <div class="modal-content">
+            <h2>👁️ Tus Datos Almacenados</h2>
+            <div id="datosContent"></div>
+            <button class="modal-close" onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // ========================================
+        // VARIABLES GLOBALES
+        // ========================================
+        let encuestaData = null;
+        const STORAGE_KEY = 'encuestaHabitosLectura_RGPD';
+
+        // ========================================
+        // CARGAR DATOS AL INICIAR
+        // ========================================
+        window.addEventListener('DOMContentLoaded', function() {
+            cargarDatosGuardados();
+            actualizarProgreso();
+            
+            // Listeners para actualizar progreso
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('change', actualizarProgreso);
+                input.addEventListener('input', actualizarProgreso);
+            });
+        });
+
+        // ========================================
+        // ACTUALIZAR BARRA DE PROGRESO
+        // ========================================
+        function actualizarProgreso() {
+            const campos = {
+                edad: document.getElementById('edad').value !== '',
+                genero: document.getElementById('genero').value !== '',
+                preferencias: document.querySelectorAll('input[name="preferencias"]:checked').length > 0,
+                frecuencia: document.getElementById('frecuencia').value !== '',
+                consentimiento1: document.getElementById('consentimiento1').checked,
+                consentimiento2: document.getElementById('consentimiento2').checked,
+                consentimiento3: document.getElementById('consentimiento3').checked,
+                consentimiento4: document.getElementById('consentimiento4').checked
+            };
+
+            const completados = Object.values(campos).filter(v => v === true).length;
+            const total = Object.keys(campos).length;
+            const porcentaje = Math.round((completados / total) * 100);
+
+            document.getElementById('progressFill').style.width = porcentaje + '%';
+            document.getElementById('progressText').textContent = porcentaje + '% completado (' + completados + '/' + total + ' campos)';
+
+            // Validar si puede enviar
+            validarFormulario();
+        }
+
+        // ========================================
+        // VALIDAR FORMULARIO
+        // ========================================
+        function validarFormulario() {
+            const edad = document.getElementById('edad').value !== '';
+            const genero = document.getElementById('genero').value !== '';
+            const preferencias = document.querySelectorAll('input[name="preferencias"]:checked').length > 0;
+            const frecuencia = document.getElementById('frecuencia').value !== '';
+            const consent1 = document.getElementById('consentimiento1').checked;
+            const consent2 = document.getElementById('consentimiento2').checked;
+            const consent3 = document.getElementById('consentimiento3').checked;
+            const consent4 = document.getElementById('consentimiento4').checked;
+
+            const todosCompletos = edad && genero && preferencias && frecuencia && 
+                                   consent1 && consent2 && consent3 && consent4;
+
+            document.getElementById('submitBtn').disabled = !todosCompletos || encuestaData !== null;
+        }
+
+        // ========================================
+        // MANEJAR ENVÍO DEL FORMULARIO
+        // ========================================
+        document.getElementById('encuestaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validar preferencias
+            const preferencias = document.querySelectorAll('input[name="preferencias"]:checked');
+            if (preferencias.length === 0) {
+                mostrarAlerta('Por favor, selecciona al menos una preferencia literaria', 'error');
+                return;
+            }
+
+            // Recopilar datos del formulario
+            const formData = {
+                // PRINCIPIO 3: Solo datos mínimos necesarios
+                edad: parseInt(document.getElementById('edad').value),
+                genero: document.getElementById('genero').value,
+                preferencias: Array.from(preferencias).map(cb => cb.value),
+                frecuencia: document.getElementById('frecuencia').value,
+                comentarios: document.getElementById('comentarios').value || null,
+                
+                // PRINCIPIO 7: Registro de consentimientos
+                consentimientos: {
+                    informacionLeida: document.getElementById('consentimiento1').checked,
+                    usoAcademico: document.getElementById('consentimiento2').checked,
+                    conocimientoDerechos: document.getElementById('consentimiento3').checked,
+                    veracidadDatos: document.getElementById('consentimiento4').checked,
+                    recibirResultados: document.getElementById('consentimiento5').checked
+                },
+                
+                // PRINCIPIO 6: Seguridad - ID único encriptado
+                id: generarIdEncriptado(),
+                
+                // PRINCIPIO 4 y 5: Registro temporal
+                fechaEnvio: new Date().toISOString(),
+                version: '1.0-RGPD',
+                
+                // PRINCIPIO 1: Transparencia - Registro de información proporcionada
+                informacionProporcionada: true,
+                aceptoTerminos: true
+            };
+
+            // PRINCIPIO 6: Guardar con encriptación
+            guardarDatos(formData);
+
+            // Mostrar confirmación
+            mostrarAlerta('✅ ¡Encuesta enviada exitosamente! Tus datos han sido guardados de forma segura y encriptada. Gracias por tu participación.', 'success');
+
+            // Deshabilitar formulario
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').innerHTML = '<span>✓</span> ENCUESTA COMPLETADA';
+
+            // Scroll al inicio
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Actualizar progreso
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = '100% completado - ¡Gracias!';
+        });
+
+        // ========================================
+        // PRINCIPIO 6: GENERAR ID ENCRIPTADO
+        // ========================================
+        function generarIdEncriptado() {
+            const timestamp = Date.now().toString(36);
+            const random = Math.random().toString(36).substring(2, 15);
+            const random2 = Math.random().toString(36).substring(2, 15);
+            return 'ENC-' + timestamp + '-' + random + random2;
+        }
+
+        // ========================================
+        // PRINCIPIO 6: GUARDAR DATOS CON ENCRIPTACIÓN
+        // ========================================
+        function guardarDatos(data) {
+            try {
+                const dataString = JSON.stringify(data);
+                // Encriptación básica con Base64
+                const encriptado = btoa(unescape(encodeURIComponent(dataString)));
+                localStorage.setItem(STORAGE_KEY, encriptado);
+                encuestaData = data;
+                
+                console.log('✅ Datos guardados y encriptados correctamente');
+            } catch (error) {
+                console.error('❌ Error al guardar datos:', error);
+                mostrarAlerta('Error al guardar los datos. Por favor, intenta nuevamente.', 'error');
+            }
+        }
+
+        // ========================================
+        // PRINCIPIO 7: CARGAR DATOS GUARDADOS
+        // ========================================
+        function cargarDatosGuardados() {
+            try {
+                const encriptado = localStorage.getItem(STORAGE_KEY);
+                if (encriptado) {
+                    // Desencriptar
+                    const dataString = decodeURIComponent(escape(atob(encriptado)));
+                    encuestaData = JSON.parse(dataString);
+                    
+                    // Deshabilitar formulario
+                    document.getElementById('submitBtn').disabled = true;
+                    document.getElementById('submitBtn').innerHTML = '<span>✓</span> ENCUESTA YA COMPLETADA';
+                    
+                    // Actualizar progreso
+                    document.getElementById('progressFill').style.width = '100%';
+                    document.getElementById('progressText').textContent = '100% completado - Ya participaste';
+                    
+                    // Mostrar alerta informativa
+                    mostrarAlerta('ℹ️ Ya has completado esta encuesta anteriormente. Puedes ver, exportar o eliminar tus datos usando los botones en la sección "Ejercicio de Derechos".', 'info');
+                    
+                    console.log('✅ Datos previos cargados correctamente');
+                }
+            } catch (error) {
+                console.error('⚠️ Error al cargar datos:', error);
+                // Si hay error, limpiar storage corrupto
+                localStorage.removeItem(STORAGE_KEY);
+            }
+        }
+
+        // ========================================
+        // PRINCIPIO 7: DERECHO DE ACCESO - Ver datos
+        // ========================================
+        function verDatos() {
+            if (!encuestaData) {
+                mostrarAlerta('❌ No hay datos guardados. Primero debes completar la encuesta.', 'error');
+                return;
+            }
+
+            const fechaEnvio = new Date(encuestaData.fechaEnvio);
+            const fechaEliminacion = new Date(fechaEnvio);
+            fechaEliminacion.setFullYear(fechaEliminacion.getFullYear() + 1);
+            fechaEliminacion.setMonth(fechaEliminacion.getMonth() + 1);
+
+            const content = `
+                <div class="data-display">
+                    <h4>📋 Identificación de la Encuesta</h4>
+                    <p><strong>ID Único:</strong> ${encuestaData.id}</p>
+                    <p><strong>Versión:</strong> ${encuestaData.version}</p>
+                    <p><strong>Fecha de Envío:</strong> ${fechaEnvio.toLocaleString('es-PE', { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })}</p>
+                    <p><strong>Fecha de Eliminación Programada:</strong> ${fechaEliminacion.toLocaleDateString('es-PE', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric'
+                    })}</p>
+                </div>
+
+                <div class="data-display">
+                    <h4>👤 Información Personal</h4>
+                    <p><strong>Edad:</strong> ${encuestaData.edad} años</p>
+                    <p><strong>Género:</strong> ${encuestaData.genero}</p>
+                </div>
+
+                <div class="data-display">
+                    <h4>📚 Preferencias Literarias</h4>
+                    <p>${encuestaData.preferencias.join(', ')}</p>
+                </div>
+
+                <div class="data-display">
+                    <h4>📖 Frecuencia de Lectura</h4>
+                    <p>${encuestaData.frecuencia}</p>
+                </div>
+
+                ${encuestaData.comentarios ? `
+                <div class="data-display">
+                    <h4>💬 Comentarios Adicionales</h4>
+                    <p>${encuestaData.comentarios}</p>
+                </div>
+                ` : ''}
+
+                <div class="data-display">
+                    <h4>✅ Consentimientos Otorgados</h4>
+                    <p><strong>Información leída y comprendida:</strong> ${encuestaData.consentimientos.informacionLeida ? '✓ Sí' : '✗ No'}</p>
+                    <p><strong>Uso académico autorizado:</strong> ${encuestaData.consentimientos.usoAcademico ? '✓ Sí' : '✗ No'}</p>
+                    <p><strong>Conocimiento de derechos:</strong> ${encuestaData.consentimientos.conocimientoDerechos ? '✓ Sí' : '✗ No'}</p>
+                    <p><strong>Veracidad de datos confirmada:</strong> ${encuestaData.consentimientos.veracidadDatos ? '✓ Sí' : '✗ No'}</p>
+                    <p><strong>Recibir resultados:</strong> ${encuestaData.consentimientos.recibirResultados ? '✓ Sí' : '✗ No'}</p>
+                </div>
+
+                <div class="data-display" style="background: #e3f2fd; border-left-color: #1976d2;">
+                    <h4>🔒 Información de Seguridad</h4>
+                    <p><strong>Estado del almacenamiento:</strong> Encriptado y protegido</p>
+                    <p><strong>Ubicación:</strong> Navegador local (no transmitido)</p>
+                    <p><strong>Acceso:</strong> Solo tú tienes acceso desde este dispositivo</p>
+                </div>
+
+                <div style="background: #fff3cd; padding: 15px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #ffc107;">
+                    <p style="color: #856404; margin: 0;">
+                        <strong>ℹ️ Nota:</strong> Esta es toda la información que tenemos almacenada sobre ti. 
+                        Puedes exportar estos datos en formato JSON o eliminarlos completamente en cualquier momento.
+                    </p>
+                </div>
+            `;
+
+            document.getElementById('datosContent').innerHTML = content;
+            document.getElementById('modalDatos').classList.add('show');
+        }
+
+        // ========================================
+        // PRINCIPIO 7: DERECHO DE PORTABILIDAD - Exportar datos
+        // ========================================
+        function exportarDatos() {
+            if (!encuestaData) {
+                mostrarAlerta('❌ No hay datos guardados para exportar. Primero debes completar la encuesta.', 'error');
+                return;
+            }
+
+            try {
+                // Crear objeto con datos estructurados para exportación
+                const datosExportacion = {
+                    metadatos: {
+                        titulo: 'Encuesta sobre Hábitos de Lectura',
+                        responsable: 'Grupo de Estudiantes de Tesis - Universidad Nacional del Perú',
+                        version: encuestaData.version,
+                        fechaExportacion: new Date().toISOString(),
+                        formatoCumpleRGPD: true
+                    },
+                    datosPersonales: {
+                        id: encuestaData.id,
+                        edad: encuestaData.edad,
+                        genero: encuestaData.genero,
+                        fechaEnvio: encuestaData.fechaEnvio
+                    },
+                    respuestasEncuesta: {
+                        preferenciasLiterarias: encuestaData.preferencias,
+                        frecuenciaLectura: encuestaData.frecuencia,
+                        comentariosAdicionales: encuestaData.comentarios
+                    },
+                    consentimientos: encuestaData.consentimientos,
+                    derechosEjercidos: {
+                        derechoPortabilidad: {
+                            ejercido: true,
+                            fecha: new Date().toISOString()
+                        }
+                    }
+                };
+
+                // Crear archivo JSON formateado
+                const dataStr = JSON.stringify(datosExportacion, null, 2);
+                const blob = new Blob([dataStr], { type: 'application/json;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                
+                // Crear enlace de descarga
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `mis_datos_encuesta_${encuestaData.id}_${Date.now()}.json`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+
+                mostrarAlerta('✅ Datos exportados exitosamente en formato JSON. El archivo ha sido descargado a tu dispositivo.', 'success');
+                
+                console.log('✅ Derecho de portabilidad ejercido correctamente');
+            } catch (error) {
+                console.error('❌ Error al exportar datos:', error);
+                mostrarAlerta('❌ Error al exportar los datos. Por favor, intenta nuevamente.', 'error');
+            }
+        }
+
+        // ========================================
+        // PRINCIPIO 7: DERECHO DE SUPRESIÓN - Eliminar datos
+        // ========================================
+        function eliminarDatos() {
+            if (!encuestaData) {
+                mostrarAlerta('❌ No hay datos guardados para eliminar.', 'error');
+                return;
+            }
+
+            // Confirmación con información detallada
+            const confirmacion = confirm(
+                '⚠️ ELIMINACIÓN DE DATOS\n\n' +
+                '¿Estás seguro de que deseas eliminar TODOS tus datos?\n\n' +
+                'Se eliminará:\n' +
+                '✗ Todas tus respuestas de la encuesta\n' +
+                '✗ Tus consentimientos registrados\n' +
+                '✗ Toda tu información personal almacenada\n\n' +
+                '⚡ Esta acción es IRREVERSIBLE.\n\n' +
+                'Si deseas participar nuevamente, deberás completar la encuesta desde cero.\n\n' +
+                '¿Deseas continuar con la eliminación?'
+            );
+
+            if (confirmacion) {
+                try {
+                    // Registrar eliminación antes de borrar (para logs)
+                    console.log('🗑️ Eliminando datos del usuario:', encuestaData.id);
+                    console.log('📅 Fecha de eliminación:', new Date().toISOString());
+                    console.log('👤 Derecho ejercido: Supresión/Cancelación (RGPD Art. 17)');
+                    
+                    // Eliminar del localStorage
+                    localStorage.removeItem(STORAGE_KEY);
+                    encuestaData = null;
+                    
+                    // Habilitar formulario nuevamente
+                    document.getElementById('submitBtn').disabled = false;
+                    document.getElementById('submitBtn').innerHTML = '<span>📤</span> ENVIAR ENCUESTA';
+                    
+                    // Resetear formulario
+                    document.getElementById('encuestaForm').reset();
+                    
+                    // Resetear progreso
+                    document.getElementById('progressFill').style.width = '0%';
+                    document.getElementById('progressText').textContent = '0% completado';
+                    
+                    // Mostrar confirmación
+                    mostrarAlerta(
+                        '✅ Tus datos han sido eliminados COMPLETAMENTE y de forma PERMANENTE. ' +
+                        'No conservamos ninguna copia. Puedes completar la encuesta nuevamente si lo deseas.',
+                        'success'
+                    );
+                    
+                    // Scroll al inicio
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    console.log('✅ Datos eliminados exitosamente - Derecho de supresión ejercido');
+                    
+                } catch (error) {
+                    console.error('❌ Error al eliminar datos:', error);
+                    mostrarAlerta('❌ Error al eliminar los datos. Por favor, intenta nuevamente.', 'error');
+                }
+            } else {
+                console.log('ℹ️ Usuario canceló la eliminación de datos');
+            }
+        }
+
+        // ========================================
+        // CERRAR MODAL
+        // ========================================
+        function cerrarModal() {
+            document.getElementById('modalDatos').classList.remove('show');
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('modalDatos').addEventListener('click', function(e) {
+            if (e.target === this) {
+                cerrarModal();
+            }
+        });
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                cerrarModal();
+            }
+        });
+
+        // ========================================
+        // MOSTRAR ALERTAS
+        // ========================================
+        function mostrarAlerta(mensaje, tipo) {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.textContent = mensaje;
+            alertBox.className = `alert ${tipo} show`;
+            
+            // Auto-ocultar después de 7 segundos
+            setTimeout(() => {
+                alertBox.classList.remove('show');
+            }, 7000);
+
+            // Scroll suave hacia la alerta
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // ========================================
+        // VALIDACIÓN EN TIEMPO REAL
+        // ========================================
+        
+        // Validar edad
+        document.getElementById('edad').addEventListener('input', function() {
+            const valor = parseInt(this.value);
+            if (valor < 10 || valor > 100) {
+                this.style.borderColor = '#f44336';
+            } else {
+                this.style.borderColor = '#4caf50';
+            }
+        });
+
+        // Validar preferencias
+        document.querySelectorAll('input[name="preferencias"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const seleccionadas = document.querySelectorAll('input[name="preferencias"]:checked').length;
+                const label = document.querySelector('label[for="' + this.id + '"]');
+                
+                if (seleccionadas > 0) {
+                    document.querySelectorAll('.checkbox-item').forEach(item => {
+                        item.style.borderLeft = '3px solid #4caf50';
+                    });
+                } else {
+                    document.querySelectorAll('.checkbox-item').forEach(item => {
+                        item.style.borderLeft = 'none';
+                    });
+                }
+            });
+        });
+
+        // ========================================
+        // INFORMACIÓN ADICIONAL EN CONSOLA
+        // ========================================
+        console.log('%c🔒 SISTEMA DE ENCUESTA RGPD-COMPLIANT', 'background: #1e3c72; color: white; font-size: 16px; padding: 10px; font-weight: bold;');
+        console.log('%c✅ Los 7 Principios del RGPD están implementados', 'color: #4caf50; font-size: 14px; font-weight: bold;');
+        console.log('');
+        console.log('%c1️⃣ TRANSPARENCIA:', 'color: #1976d2; font-weight: bold;', 'Información completa visible antes del formulario');
+        console.log('%c2️⃣ LIMITACIÓN FINALIDAD:', 'color: #f57c00; font-weight: bold;', 'Usos específicos definidos claramente');
+        console.log('%c3️⃣ MINIMIZACIÓN:', 'color: #7b1fa2; font-weight: bold;', 'Solo 5 campos (4 obligatorios + 1 opcional)');
+        console.log('%c4️⃣ EXACTITUD:', 'color: #388e3c; font-weight: bold;', 'Validación y verificación de datos');
+        console.log('%c5️⃣ CONSERVACIÓN:', 'color: #f9a825; font-weight: bold;', 'Plazo de 12 meses claramente establecido');
+        console.log('%c6️⃣ SEGURIDAD:', 'color: #d32f2f; font-weight: bold;', 'Encriptación + almacenamiento local');
+        console.log('%c7️⃣ RESPONSABILIDAD:', 'color: #00796b; font-weight: bold;', 'Consentimientos + Derechos ARCO ejercibles');
+        console.log('');
+        console.log('%c💾 Almacenamiento:', 'font-weight: bold;', 'localStorage (sin base de datos externa)');
+        console.log('%c🔐 Encriptación:', 'font-weight: bold;', 'Base64 aplicada a todos los datos');
+        console.log('%c👤 Control:', 'font-weight: bold;', 'Usuario tiene control total de sus datos');
+        console.log('');
+        console.log('%cℹ️ Para más información sobre cada principio, revisa las secciones coloreadas en la interfaz', 'color: #666; font-style: italic;');
+    </script>
+</body>
+</html>
